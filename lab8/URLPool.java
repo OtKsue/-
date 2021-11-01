@@ -17,11 +17,11 @@ public class URLPool {
     public synchronized LinkedList<URLDepthPair> getAllPairs() {
         return urls;
     }
-    public synchronized LinkedList<URLDepthPair> getProcessedPairs(){
+    public synchronized LinkedList<URLDepthPair> getProcessedPairs() {
         return processedUrls;
     }
 
-    public synchronized URLDepthPair pop(){
+    public synchronized URLDepthPair pop() {
 
         while (urls.size() == 0) {
             dataWait++;
@@ -36,7 +36,7 @@ public class URLPool {
         return urls.removeFirst();
     }
 
-    public synchronized void addPair ( URLDepthPair pair ){
+    public synchronized void addPair ( URLDepthPair pair ) {
         if(!pair.listContains(processedUrls)) {
             processedUrls.add(pair);
             if (pair.getDepth() <= maxDepth) {
@@ -46,12 +46,11 @@ public class URLPool {
         }
     }
 
-    public synchronized  int getWait(){
+    public synchronized  int getWait() {
         return dataWait;
     }
 
-    public synchronized int getMaxDepth(){
+    public synchronized int getMaxDepth() {
         return this.maxDepth;
     }
-
 }
